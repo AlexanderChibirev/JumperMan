@@ -30,7 +30,7 @@ cocos2d::RefPtr<T> make_node(TArgs&&... args)
 template <class T, class ...TArgs>
 cocos2d::RefPtr<cocos2d::Scene> make_scene(TArgs&&... args)
 {
-    auto scene = cocos2d::Scene::create();
+    auto scene = cocos2d::Scene::createWithPhysics();
     auto layer = make_node<T>(std::forward<TArgs>(args)...);
     scene->addChild(layer);
 
