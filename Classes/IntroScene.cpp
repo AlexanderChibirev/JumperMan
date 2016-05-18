@@ -4,11 +4,9 @@
 #include "OptionalScene.h"
 USING_NS_CC;
 
-// on "init" you need to initialize your instance
 bool CIntroScene::init()
 {
-    //////////////////////////////
-    // 1. super init first
+  
     if ( !Layer::init() )
     {
         return false;
@@ -17,11 +15,6 @@ bool CIntroScene::init()
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-    /////////////////////////////
-    // 2. add a menu item with "X" image, which is clicked to quit the program
-    //    you may modify it.
-
-    // add a "close" icon to exit the progress. it's an autorelease object
 	auto closeLabel = Label::createWithTTF("Exit!", "fonts/Marker Felt.ttf", 24);
 	auto closeItem = MenuItemLabel::create(closeLabel, CC_CALLBACK_1(CIntroScene::OnMenuClose, this));
     closeItem->setPosition(Vec2(origin.x + visibleSize.width - closeItem->getContentSize().width/2 ,
@@ -44,10 +37,9 @@ bool CIntroScene::init()
 
     auto sprite = Sprite::create("forMenuScene/bgMenu.png");
 
-    // position the sprite on the center of the screen
-    sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
+	sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
 
-    // add the sprite as a child to this layer
+ 
     this->addChild(sprite, 0);
     
     return true;

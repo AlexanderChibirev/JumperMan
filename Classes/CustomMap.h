@@ -2,6 +2,7 @@
 #include "cocos_custom.h"
 #include "IMapPhysics.h"
 
+
 /// Data model for my own custom maps.
 class CCustomMap
         : public cocos2d::TMXTiledMap
@@ -16,6 +17,7 @@ public:
     bool CanStandOn(const cocos2d::Vec2 &worldPosition)const override;
 
     cocos2d::Vec2 GetHeroWorldPosition()const;
+	std::vector<cocos2d::Rect> GetObcaslePosition()const;
 
     std::vector<cocos2d::Vec2> GetEnemyWorldPositions()const;
 
@@ -31,4 +33,7 @@ private:
     std::vector<cocos2d::Rect> m_obstacles;
     std::vector<cocos2d::Vec2> m_enemyPositions;
     cocos2d::Vec2 m_heroPosition;
+	//cocos2d::Sprite* _mySprite = cocos2d::Sprite::create();;
+	//std::vector<Sprite*> MySprites;
+
 };

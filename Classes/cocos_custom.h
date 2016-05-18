@@ -31,6 +31,7 @@ template <class T, class ...TArgs>
 cocos2d::RefPtr<cocos2d::Scene> make_scene(TArgs&&... args)
 {
     auto scene = cocos2d::Scene::createWithPhysics();
+	scene->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
     auto layer = make_node<T>(std::forward<TArgs>(args)...);
     scene->addChild(layer);
 

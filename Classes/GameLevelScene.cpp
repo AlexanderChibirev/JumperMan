@@ -16,7 +16,7 @@ bool CGameLevelScene::init()
 
     m_customMap = make_node<CCustomMap>("tmx/layer_1.tmx");
     addChild(m_customMap);
-    m_customMap->setScale(1.5f);
+    m_customMap->setScale(2.0f);
     SpawnHero();
     SpawnEnemies();
     
@@ -43,10 +43,16 @@ void CGameLevelScene::SpawnHero()
     m_hero->setPosition(convertToNodeSpace(m_customMap->GetHeroWorldPosition()));
     m_heroPuppeteer = std::make_unique<CHeroPuppeteer>();
     m_heroPuppeteer->SetPuppet(m_hero);
-
-	//auto physicsBody = PhysicsBody::createBox(Size(65.0f, 81.0f), PhysicsMaterial(0.1f, 1.0f, 0.0f));
-	//physicsBody->setDynamic(false);
-	//m_hero->addComponent(physicsBody);
+	;
+	for (auto &it : m_customMap->GetObcaslePosition())
+	{
+		auto physicsBody = PhysicsBody::createBox(Size(it.size.width + 32, it.size.height + 32), PhysicsMaterial(0.1f, 1.0f, 0.0f));
+		physicsBody->setDynamic(false);
+		cocos2d::Sprite* _mySprite = cocos2d::Sprite::create();
+		_mySprite->setPhysicsBody(physicsBody);
+		_mySprite->setPosition(it.origin.x+ 300, it.origin.y + 400);
+		addChild(_mySprite);
+	}
     addChild(m_hero);
 }
 

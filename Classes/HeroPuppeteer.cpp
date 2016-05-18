@@ -4,7 +4,7 @@ USING_NS_CC;
 
 namespace
 {
-const Vec2 HERO_SPEED(350, 350);
+const Vec2 HERO_SPEED(150,150);
 }
 
 void CHeroPuppeteer::SetPuppet(CHeroPuppet *hero)

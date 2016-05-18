@@ -1,6 +1,6 @@
 #include "AppDelegate.h"
 #include "SplashScene.h"
-
+#include "GameLevelScene.h"
 USING_NS_CC;
 
 AppDelegate::AppDelegate()
@@ -33,7 +33,8 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     FileUtils::getInstance()->addSearchPath("res");
 
-    auto scene = SplashScene::createScene();
+	auto scene = (make_scene<CGameLevelScene>());
+    //auto scene = SplashScene::createScene();
 
     director->runWithScene(scene);
 

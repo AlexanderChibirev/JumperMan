@@ -152,6 +152,11 @@ Vec2 CCustomMap::GetHeroWorldPosition() const
     return convertToWorldSpace(m_heroPosition);
 }
 
+std::vector<cocos2d::Rect> CCustomMap::GetObcaslePosition()const
+{
+	return m_obstacles;
+}
+
 std::vector<Vec2> CCustomMap::GetEnemyWorldPositions() const
 {
     std::vector<Vec2> positions(m_enemyPositions);
@@ -170,6 +175,7 @@ bool CCustomMap::init(const std::string &tmxFile)
 bool CCustomMap::InitPassabilityMap()
 {
     TMXLayer *layer = TMXTiledMap::getLayer(C_LAYER_NAME);
+	auto s = layer->getTileSet();
     CLayerBoolean property(*this, *layer, C_PASSABILITY_PROP);
     const Size size = layer->getLayerSize();
     const unsigned width = static_cast<unsigned>(size.width);
@@ -221,8 +227,9 @@ bool CCustomMap::LoadUnits()
             }
             if (C_HERO_TYPE_KEY == map.at("type").asString())
             {
-                m_heroPosition = rect.origin;
-            }
+				m_heroPosition = rect.origin;
+				
+			}
         }
     }
     catch (const std::exception &)
@@ -235,10 +242,16 @@ bool CCustomMap::LoadUnits()
 // метод `.at()` бросит исключение, если заданного ключа нет в словаре.
 Rect CCustomMap::AsRect(const ValueMap &properties) const
 {
-    Rect rect;
-    rect.origin.x = properties.at("x").asFloat();
-    rect.origin.y = properties.at("y").asFloat();
-    rect.size.width = properties.at("width").asFloat();
-    rect.size.height = properties.at("height").asFloat();
+	Rect rect;
+	rect.origin.x = properties.at("x").asFloat();
+	rect.origin.y = properties.at("y").asFloat();
+	rect.size.width = properties.at("width").asFloat();
+	rect.size.height = properties.at("height").asFloat();
+
+	//auto physicsBody = PhysicsBody::createBox(Size(rect.size.width, rect.size.height), PhysicsMaterial(0.1f, 1.0f, 0.0f));
+	//physicsBody->setDynamic(false);
+	//_mySprite->setPosition(rect.origin.x, rect.origin.y);
+	//_vMySprites.push_back(*_mySprite);
     return rect;
 }
+

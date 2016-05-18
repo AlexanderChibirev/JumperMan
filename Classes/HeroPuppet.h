@@ -14,5 +14,6 @@ public:
 
 private:
     cocos2d::RefPtr<cocos2d::Sprite> m_body;
+
     std::function<void()> m_afterUpdate;
 };

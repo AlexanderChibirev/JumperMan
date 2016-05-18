@@ -17,10 +17,10 @@ void CHeroPuppet::onEnter()
 {
     CPuppet::onEnter();
     addChild(m_body);
-	auto physicsBody = PhysicsBody::createBox(Size(65.0f, 81.0f), PhysicsMaterial(0.1f, 1.0f, 0.0f));
-	physicsBody->setDynamic(false);
-	m_body->setPhysicsBody(physicsBody);
-	
+	auto physicsBody = PhysicsBody::createBox(Size(m_body->getBoundingBox().size.width, m_body->getBoundingBox().size.height), PhysicsMaterial(0.1f, 1.0f, 0.0f));
+	physicsBody->setDynamic(true);
+	physicsBody->setGravityEnable(true);
+	m_body->setPhysicsBody(physicsBody);	
 }
 
 void CHeroPuppet::onExit()
